@@ -1,0 +1,8 @@
+.pill {
+  composes: ;
+}
+
+.pill:hover {
+  border-color: var(--app-pill-border-hover);
+  background-color: var(--app-pill-hover-bg);
+}

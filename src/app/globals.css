@@ -1,1 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&display=swap");
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Tailwind v4 Theme ─── */
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-border: hsl(var(--border));
+  --color-ring: hsl(var(--ring));
+  --color-destructive: hsl(var(--destructive));
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-card: 24px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 0 20px 0 rgba(0, 0, 0, 0.04);
+  --shadow-float: 0 1px 2px rgba(0, 0, 0, 0.08);
+
+  --font-sans: "Google Sans Flex", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "Fira Code", monospace;
+
+  --animate-fade-in: fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-slide-up: slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-scale-in: scale-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+}
+
+/* ─── Design Tokens (Light) ─── */
+:root {
+  --background: 0 0% 94%;
+  --foreground: 198 100% 7%;
+
+  --card: 35 56% 97%;
+  --card-foreground: 198 100% 7%;
+
+  --popover: 35 56% 97%;
+  --popover-foreground: 198 100% 7%;
+
+  --primary: 195 90% 45%;
+  --primary-foreground: 198 100% 7%;
+
+  --secondary: 198 76% 33%;
+  --secondary-foreground: 0 0% 100%;
+
+  --muted: 36 23% 90%;
+  --muted-foreground: 215 16% 47%;
+
+  --accent: 195 84% 81%;
+  --accent-foreground: 198 100% 7%;
+
+  --destructive: 0 84% 60%;
+
+  --border: 34 16% 84%;
+  --input: 34 16% 84%;
+  --ring: 195 90% 45%;
+
+  --radius: 6px;
+
+  --app-shell-bg: #E8E0D2;
+  --app-frame-bg: #FCF7F0;
+  --app-surface-bg: #F4EEE3;
+  --app-on-surface: hsl(var(--foreground));
+  --app-hairline: hsl(var(--border));
+  --app-on-sidebar: hsl(var(--foreground));
+  --app-pill-border: hsl(var(--border) / 0.35);
+  --app-pill-border-hover: hsl(var(--border));
+  --app-pill-hover-bg: hsl(var(--foreground) / 0.06);
+}
+
+/* ─── Design Tokens (Dark) ─── */
+.dark {
+  --background: 198 100% 7%;
+  --foreground: 0 0% 100%;
+
+  --card: 200 100% 5%;
+  --card-foreground: 0 0% 100%;
+
+  --popover: 200 100% 5%;
+  --popover-foreground: 0 0% 100%;
+
+  --primary: 195 90% 45%;
+  --primary-foreground: 198 100% 7%;
+
+  --secondary: 198 76% 33%;
+  --secondary-foreground: 0 0% 100%;
+
+  --muted: 200 100% 5%;
+  --muted-foreground: 0 0% 65%;
+
+  --accent: 198 76% 33%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84% 60%;
+
+  --border: 200 100% 5%;
+  --input: 200 100% 5%;
+  --ring: 195 90% 45%;
+
+  --app-shell-bg: #050D14;
+  --app-frame-bg: #001D29;
+  --app-surface-bg: #001523;
+  --app-on-surface: rgba(255, 255, 255, 1);
+  --app-hairline: rgba(255, 255, 255, 0.12);
+  --app-on-sidebar: rgba(255, 255, 255, 1);
+  --app-pill-border: rgba(255, 255, 255, 0.20);
+  --app-pill-border-hover: rgba(255, 255, 255, 0.30);
+  --app-pill-hover-bg: rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Base ─── */
+* {
+  border-color: var(--app-hairline);
+}
+
+html {
+  background-color: var(--app-shell-bg);
+}
+
+body {
+  background-color: var(--app-shell-bg);
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+::selection {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+/* ─── AI Shimmer Effect ─── */
+.ai-shimmer {
+  animation: ai-shimmer-sweep 6.1s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  background-image: linear-gradient(
+    108deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--primary)) 30%,
+    hsl(var(--primary)) 43%,
+    #79e6ff 47%,
+    #ff68cf 52%,
+    #ff9ee7 56%,
+    hsl(var(--primary)) 61%,
+    hsl(var(--primary)) 72%,
+    hsl(var(--primary)) 100%
+  );
+  background-position: 150% 50%;
+  background-size: 260% 100%;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 0 10px hsl(var(--primary) / 0.12));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  will-change: background-position;
+}
+
+@keyframes ai-shimmer-sweep {
+  0%, 16% { background-position: 150% 50%; }
+  68%, 100% { background-position: -55% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-shimmer {
+    animation: none;
+    background-image: none;
+    color: hsl(var(--primary));
+    filter: none;
+    -webkit-text-fill-color: currentColor;
+    will-change: auto;
+  }
+}
+
+/* ─── Stagger animation utility ─── */
+.stagger-item {
+  opacity: 0;
+  animation: slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
