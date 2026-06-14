@@ -204,3 +204,17 @@ body {
   opacity: 0;
   animation: slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
+/* ─── Responsive Links Grid ─── */
+.links-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+}
+
+@media (min-width: 440px) {
+  .links-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+

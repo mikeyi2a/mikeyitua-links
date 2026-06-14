@@ -15,7 +15,7 @@ export default function LinksPage() {
         flexDirection: "column",
         alignItems: "center",
         minHeight: "100vh",
-        padding: "0 6px 40px",
+        padding: "0 12px 40px",
       }}
     >
       {/* Centered column — wider on desktop */}
@@ -75,14 +75,8 @@ export default function LinksPage() {
         {/* ─── Spotify Widget (standalone) ─── */}
         <SpotifyWidget />
 
-        {/* ─── Links Grid (2-column) ─── */}
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "4px",
-          }}
-        >
+        {/* ─── Links Grid ─── */}
+        <section className="links-grid">
           {links.map((link, index) => (
             <LinkCard key={link.id} link={link} index={index} />
           ))}
