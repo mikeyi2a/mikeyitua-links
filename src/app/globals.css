@@ -212,7 +212,7 @@ body {
   gap: 4px;
 }
 
-@media (min-width: 440px) {
+@media (min-width: 340px) {
   .links-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
