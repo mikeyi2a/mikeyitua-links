@@ -106,7 +106,7 @@ export const links: LinkItem[] = [
   {
     id: "playround",
     title: "Playround",
-    description: "SwiftUI iOS app, party game app that I'm building.",
+    description: "A SwiftUI iOS party game app built for groups.",
     href: "#",
     category: "project",
     badge: "Soon",
@@ -115,7 +115,7 @@ export const links: LinkItem[] = [
   {
     id: "bookmrkr",
     title: "BookMrkr",
-    description: "Bookmarking tool to save your inspiration, X bookmarks, screenshots, links, and fonts. Built as a desktop app.",
+    description: "Desktop bookmarking app to organize inspiration, links, and assets.",
     href: "#",
     category: "tool",
     badge: "Soon",
