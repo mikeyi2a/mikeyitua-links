@@ -109,6 +109,7 @@ export const links: LinkItem[] = [
     description: "A SwiftUI iOS party game app built for groups.",
     href: "#",
     category: "project",
+    ogImage: "/images/playround.png",
     badge: "Soon",
     badgeVariant: "default",
   },
