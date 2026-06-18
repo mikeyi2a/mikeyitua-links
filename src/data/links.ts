@@ -121,5 +121,14 @@ export const links: LinkItem[] = [
     badge: "Soon",
     badgeVariant: "default",
   },
+  {
+    id: "minikit",
+    title: "Minikit",
+    description: "Copy-paste component registry for building mini creative tools.",
+    href: "#",
+    category: "tool",
+    badge: "Soon",
+    badgeVariant: "default",
+  },
 ];
 
