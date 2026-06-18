@@ -112,5 +112,14 @@ export const links: LinkItem[] = [
     badge: "Soon",
     badgeVariant: "default",
   },
+  {
+    id: "bookmrkr",
+    title: "BookMrkr",
+    description: "Bookmarking tool to save your inspiration, X bookmarks, screenshots, links, and fonts. Built as a desktop app.",
+    href: "#",
+    category: "tool",
+    badge: "Soon",
+    badgeVariant: "default",
+  },
 ];
 
