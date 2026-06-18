@@ -5,7 +5,7 @@ import { Providers } from "./providers";
 import { AgentationProvider } from "@/components/AgentationProvider";
 
 const siteUrl = "https://links.mikeyitua.com";
-const socialImageUrl = `${siteUrl}/og-image.png`;
+const socialImageUrl = "https://www.mikeyitua.com/og-image-v4.png";
 
 export const metadata: Metadata = {
   title: "Mikey Itua | Links",
