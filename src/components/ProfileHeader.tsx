@@ -32,8 +32,8 @@ export function ProfileHeader() {
             maxWidth: "320px",
           }}
         >
-          <span className="ai-shimmer">AI-native</span> designer taking
-          imperfect action
+          Product designer and <span className="ai-shimmer">AI-native</span>{" "}
+          builder taking imperfect action
         </p>
       </div>
     </header>
