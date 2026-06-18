@@ -103,4 +103,14 @@ export const links: LinkItem[] = [
     badgeVariant: "default",
     external: true,
   },
+  {
+    id: "playround",
+    title: "Playround",
+    description: "SwiftUI iOS app, party game app that I'm building.",
+    href: "#",
+    category: "project",
+    badge: "Soon",
+    badgeVariant: "default",
+  },
 ];
+
