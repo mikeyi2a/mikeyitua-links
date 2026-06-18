@@ -79,6 +79,17 @@ export const links: LinkItem[] = [
     external: true,
   },
   {
+    id: "spinner-builder",
+    title: "Spinner Builder",
+    description: "Interactive generator for CSS and SVG spinner animations. Built with v0.",
+    href: "https://v0-rgb-spinners.vercel.app/",
+    category: "tool",
+    ogImage: "https://www.mikeyitua.com/images/side-quests/spinner-builder-poster.webp",
+    badge: "Tool",
+    badgeVariant: "default",
+    external: true,
+  },
+  {
     id: "circle-animation-builder",
     title: "Circle Animation Builder",
     description:
