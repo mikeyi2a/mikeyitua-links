@@ -19,6 +19,7 @@ export function LinkCard({ link, index }: { link: LinkItem; index: number }) {
       className="group stagger-item block no-underline transition-[background-color] duration-200 ease-out active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[hsl(var(--primary)/0.5)]"
       style={{
         animationDelay: `${80 + index * 60}ms`,
+        height: "100%",
       }}
     >
       <div
@@ -31,6 +32,7 @@ export function LinkCard({ link, index }: { link: LinkItem; index: number }) {
           flexDirection: "column",
           overflow: "hidden",
           width: "100%",
+          height: "100%",
         }}
       >
         {/* ─── OG Image / Placeholder ─── */}
@@ -79,7 +81,7 @@ export function LinkCard({ link, index }: { link: LinkItem; index: number }) {
         </div>
 
         {/* ─── Label ─── */}
-        <div style={{ padding: "12px 14px" }}>
+        <div style={{ padding: "12px 14px", flex: "1 1 auto", display: "flex", flexDirection: "column" }}>
           <div
             style={{
               alignItems: "center",
