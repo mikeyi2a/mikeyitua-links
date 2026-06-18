@@ -115,6 +115,17 @@ export const links: LinkItem[] = [
     external: true,
   },
   {
+    id: "idea-generator",
+    title: "Idea Generator",
+    description: "AI-powered tool to generate and refine startup ideas. Built with Lovable.",
+    href: "https://idea-splash-palette.lovable.app",
+    category: "tool",
+    ogImage: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d94fc10c-a564-4fe0-aa8d-3b9ad2da5017/id-preview-73e3b2f8--58ae753b-6167-4830-a4ae-87f6d9100b35.lovable.app-1781825967440.png",
+    badge: "Tool",
+    badgeVariant: "default",
+    external: true,
+  },
+  {
     id: "playround",
     title: "Playround",
     description: "A SwiftUI iOS party game app built for groups.",
