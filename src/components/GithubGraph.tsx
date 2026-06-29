@@ -25,6 +25,7 @@ const CELL_RADIUS = 2;
 
 type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 };
 type ApiResponse = { total: Record<string, number>; contributions: Day[] };
+type Tip = { text: string; x: number; y: number };
 
 /** Group days into week columns (Sun→Sat), padding the first column to align. */
 function toWeeks(days: Day[]): Array<Array<Day | null>> {
@@ -36,9 +37,31 @@ function toWeeks(days: Day[]): Array<Array<Day | null>> {
   return weeks;
 }
 
+function ordinal(n: number): string {
+  const rem100 = n % 100;
+  if (rem100 >= 11 && rem100 <= 13) return `${n}th`;
+  switch (n % 10) {
+    case 1: return `${n}st`;
+    case 2: return `${n}nd`;
+    case 3: return `${n}rd`;
+    default: return `${n}th`;
+  }
+}
+
+/** "17 contributions on June 18th" — GitHub's phrasing. */
+function tooltipText(day: Day): string {
+  const d = new Date(`${day.date}T00:00:00`);
+  const month = d.toLocaleDateString("en-US", { month: "long" });
+  const dateLabel = `${month} ${ordinal(d.getDate())}`;
+  const count =
+    day.count === 0 ? "No contributions" : `${day.count} contribution${day.count === 1 ? "" : "s"}`;
+  return `${count} on ${dateLabel}`;
+}
+
 export function GithubGraph() {
   const [days, setDays] = useState<Day[] | null>(null);
   const [error, setError] = useState(false);
+  const [tip, setTip] = useState<Tip | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -53,6 +76,12 @@ export function GithubGraph() {
 
   const weeks = days ? toWeeks(days) : [];
   const total = days?.reduce((sum, d) => sum + d.count, 0) ?? 0;
+
+  const showTip = (day: Day, el: HTMLElement) => {
+    const rect = el.getBoundingClientRect();
+    setTip({ text: tooltipText(day), x: rect.left + rect.width / 2, y: rect.top });
+  };
+  const hideTip = () => setTip(null);
 
   return (
     <section
@@ -104,6 +133,7 @@ export function GithubGraph() {
         }}
         aria-label={`${GITHUB_USERNAME}'s GitHub contributions: ${total} in the last year`}
         role="img"
+        onScroll={hideTip}
       >
         {error ? (
           <p style={{ color: "hsl(var(--muted-foreground))", fontSize: "12px", lineHeight: "16px", margin: "4px 0" }}>
@@ -126,22 +156,65 @@ export function GithubGraph() {
           >
             {weeks.flatMap((week, w) =>
               // pad short final week to keep the 7-row grid rectangular
-              Array.from({ length: 7 }, (_, d) => week[d] ?? null).map((day, d) => (
-                <div
-                  key={`${w}-${d}`}
-                  title={day ? `${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}` : undefined}
-                  style={{
-                    width: CELL_SIZE,
-                    height: CELL_SIZE,
-                    borderRadius: CELL_RADIUS,
-                    backgroundColor: day ? `var(--gh-${day.level})` : "transparent",
-                  }}
-                />
-              )),
+              Array.from({ length: 7 }, (_, d) => week[d] ?? null).map((day, d) =>
+                day ? (
+                  <button
+                    type="button"
+                    key={`${w}-${d}`}
+                    aria-label={tooltipText(day)}
+                    onMouseEnter={(e) => showTip(day, e.currentTarget)}
+                    onMouseLeave={hideTip}
+                    onFocus={(e) => showTip(day, e.currentTarget)}
+                    onBlur={hideTip}
+                    style={{
+                      width: CELL_SIZE,
+                      height: CELL_SIZE,
+                      padding: 0,
+                      border: "none",
+                      borderRadius: CELL_RADIUS,
+                      cursor: "pointer",
+                      backgroundColor: `var(--gh-${day.level})`,
+                      outline: "1px solid rgba(27, 31, 36, 0.06)",
+                      outlineOffset: "-1px",
+                    }}
+                  />
+                ) : (
+                  <div
+                    key={`${w}-${d}`}
+                    style={{ width: CELL_SIZE, height: CELL_SIZE, backgroundColor: "transparent" }}
+                  />
+                ),
+              ),
             )}
           </div>
         )}
       </div>
+
+      {/* Custom tooltip — fixed so the scroll container can't clip it */}
+      {tip && (
+        <div
+          role="tooltip"
+          style={{
+            position: "fixed",
+            left: tip.x,
+            top: tip.y - 8,
+            transform: "translate(-50%, -100%)",
+            backgroundColor: "#1b1f24",
+            color: "#fff",
+            fontSize: "12px",
+            fontWeight: 500,
+            lineHeight: "16px",
+            padding: "5px 10px",
+            borderRadius: "8px",
+            whiteSpace: "nowrap",
+            pointerEvents: "none",
+            zIndex: 50,
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
+          }}
+        >
+          {tip.text}
+        </div>
+      )}
     </section>
   );
 }
