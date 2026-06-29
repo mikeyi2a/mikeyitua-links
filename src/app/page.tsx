@@ -5,6 +5,7 @@ import { SocialPill } from "@/components/SocialPill";
 import { LinkCard } from "@/components/LinkCard";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { SpotifyWidget } from "@/components/SpotifyWidget";
+import { GithubGraph } from "@/components/GithubGraph";
 import { socialLinks, links } from "@/data/links";
 
 export default function LinksPage() {
@@ -74,6 +75,9 @@ export default function LinksPage() {
 
         {/* ─── Spotify Widget (standalone) ─── */}
         <SpotifyWidget />
+
+        {/* ─── GitHub Contribution Graph ─── */}
+        <GithubGraph />
 
         {/* ─── Links Grid ─── */}
         <section className="links-grid">
