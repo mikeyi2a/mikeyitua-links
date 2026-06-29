@@ -92,6 +92,13 @@
   --app-pill-border: hsl(var(--border) / 0.35);
   --app-pill-border-hover: hsl(var(--border));
   --app-pill-hover-bg: hsl(var(--foreground) / 0.06);
+
+  /* GitHub contribution scale — light theme (matches github.com) */
+  --gh-0: #ebedf0;
+  --gh-1: #9be9a8;
+  --gh-2: #40c463;
+  --gh-3: #30a14e;
+  --gh-4: #216e39;
 }
 
 /* ─── Design Tokens (Dark) ─── */
@@ -132,6 +139,13 @@
   --app-pill-border: rgba(255, 255, 255, 0.20);
   --app-pill-border-hover: rgba(255, 255, 255, 0.30);
   --app-pill-hover-bg: rgba(255, 255, 255, 0.06);
+
+  /* GitHub contribution scale — dark theme (matches github.com dark) */
+  --gh-0: rgba(255, 255, 255, 0.06);
+  --gh-1: #0e4429;
+  --gh-2: #006d32;
+  --gh-3: #26a641;
+  --gh-4: #39d353;
 }
 
 /* ─── Base ─── */
