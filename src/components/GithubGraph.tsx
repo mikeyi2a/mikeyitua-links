@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GitGraph } from "lucide-react";
 
 /**
@@ -62,6 +62,7 @@ export function GithubGraph() {
   const [days, setDays] = useState<Day[] | null>(null);
   const [error, setError] = useState(false);
   const [tip, setTip] = useState<Tip | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -73,6 +74,12 @@ export function GithubGraph() {
       });
     return () => controller.abort();
   }, []);
+
+  // Once the graph renders, scroll to the most recent (right-most) weeks.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) el.scrollLeft = el.scrollWidth;
+  }, [days]);
 
   const weeks = days ? toWeeks(days) : [];
   const total = days?.reduce((sum, d) => sum + d.count, 0) ?? 0;
@@ -126,6 +133,7 @@ export function GithubGraph() {
 
       {/* Graph is ~53 weeks wide — let it scroll on narrow screens */}
       <div
+        ref={scrollRef}
         style={{
           overflowX: "auto",
           overscrollBehavior: "contain",
